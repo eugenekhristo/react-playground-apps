@@ -1,2 +1,2 @@
-# react-playground-apps
+# Fun react apps
 🚀 Just having fun with react
