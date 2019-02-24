@@ -1,0 +1,59 @@
+body {
+  background-color: #282c34;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #181818;
+  text-align: center;
+
+  &__logo {
+    padding: 15px 0 30px;
+  }
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.movie {
+  box-shadow: 0 0 35px black;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+///////// MOVIE PAGE
+//////////////////////////////
+.movie-page {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 50vh;
+
+
+  .movie-info {
+    background-color: #fff;
+    height: calc(100vh - 50vh - 63px);
+
+    .container {
+      display: flex;
+    }
+  
+
+    &__img {
+      box-shadow: 0 0 35px black;
+      display: inline-block;
+      margin-top: -35px;
+      align-self: flex-start;
+    }
+
+    &__desc {
+      margin-left: 30px;
+    }
+  }
+}
