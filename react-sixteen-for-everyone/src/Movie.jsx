@@ -6,14 +6,13 @@ const IMAGE_PATH = 'https://image.tmdb.org/t/p/w154';
 
 const Movie = ({ movie = {}, match }) => {
   return (
-    <div className="movie">
-      <Link to={`/movies/${movie.id}`}>
-        <img
-          src={`${IMAGE_PATH}${movie.poster_path}`}
-          alt="Poster for the movie"
-        />
-      </Link>
-    </div>
+    <Link to={`/movies/${movie.id}`}>
+      <img
+        className="movie"
+        src={`${IMAGE_PATH}${movie.poster_path}`}
+        alt="Poster for the movie"
+      />
+    </Link>
   );
 };
 

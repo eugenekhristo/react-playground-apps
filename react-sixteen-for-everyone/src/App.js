@@ -12,13 +12,12 @@ class App extends Component {
     return (
       <React.Fragment>
         <Header />
-        <div className="container">
-          <Switch>
-            <Route path="/movies/:id" component={MoviePage} />
-            <Route path="/movies" component={MoviesPage} />
-            <Redirect exact from="/" to="/movies" />
-          </Switch>
-        </div>
+
+        <Switch>
+          <Route path="/movies/:id" component={MoviePage} />
+          <Route path="/movies" component={MoviesPage} />
+          <Redirect exact from="/" to="/movies" />
+        </Switch>
       </React.Fragment>
     );
   }

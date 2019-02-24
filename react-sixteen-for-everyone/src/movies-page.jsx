@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // components
-import Movie from './Movie';
+import Movie from './movie';
 
 class MoviesPage extends Component {
   state = {
@@ -12,7 +12,7 @@ class MoviesPage extends Component {
     const {movies} = this.state;
 
     return (
-      <div>
+      <div className="movies container">
         {movies.map(movie => <Movie key={movie.id} movie={movie} {...this.props} />)}
       </div>
     )
