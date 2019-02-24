@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Overdrive from 'react-overdrive';
 
 // constants
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w154';
@@ -19,11 +20,16 @@ class MoviePage extends Component {
       <div className="movie-page" ref={this.moviePageRef}>
         <div className="movie-info">
           <div className="container">
-            <img
-              src={movie.poster_path ? `${IMAGE_URL}${movie.poster_path}` : ''}
-              alt="Thumbnail of the movie"
-              className="movie-info__img"
-            />
+            <Overdrive id={`${movie.id}`}>
+              <img
+                src={
+                  movie.poster_path ? `${IMAGE_URL}${movie.poster_path}` : ''
+                }
+                alt="Thumbnail of the movie"
+                className="movie-info__img"
+              />
+            </Overdrive>
+
             <div className="movie-info__desc">
               <h2>{movie.title}</h2>
               <h3>{movie.release_date}</h3>
