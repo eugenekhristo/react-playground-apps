@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Overdrive from 'react-overdrive';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loadMovie, resetMovie } from './actions';
 
 // constants
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w154';
 const BACKDROP_URL = 'https://image.tmdb.org/t/p/w1280';
 
 class MoviePage extends Component {
-  state = {
-    movie: {}
-  };
-
   moviePageRef = React.createRef();
 
   render() {
-    const { movie } = this.state;
+    const { movie } = this.props;
 
+    if (this.moviePageRef.current) {
+      const { style: moviePageStyle } = this.moviePageRef.current;
+      moviePageStyle.backgroundImage = `url(${BACKDROP_URL}${movie.backdrop_path})`;
+    }
+    
     return (
       <div className="movie-page" ref={this.moviePageRef}>
         <div className="movie-info">
@@ -41,28 +44,25 @@ class MoviePage extends Component {
     );
   }
 
-  async componentDidMount() {
-    const { match } = this.props;
-    const { style: moviePageStyle } = this.moviePageRef.current;
-
-    try {
-      const { data: movie } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${
-          match.params.id
-        }?api_key=d5b443a2673ed0b0942a61242f8cec8d&language=en-US`
-      );
-      moviePageStyle.backgroundImage = `url(${
-        movie.backdrop_path ? `${BACKDROP_URL}${movie.backdrop_path}` : ''
-      })`;
-      this.setState({ movie });
-    } catch (error) {
-      if (error.response) {
-        console.log('Handling EXPECTED errors!');
-      } else {
-        console.log('Handling UN_EXPECTED errors!');
-      }
-    }
+  componentDidMount() {
+    const { match, loadMovie } = this.props;
+    loadMovie(match.params.id);
   }
+
+  componentWillUnmount = () => {
+    const { resetMovie } = this.props;
+    resetMovie();
+  }
+  
 }
 
-export default MoviePage;
+const mapStateToProps = state => ({
+  movie: state.movies.movie
+});
+
+const bindActionCreatorsToProps = dispatch => bindActionCreators({
+  loadMovie,
+  resetMovie
+}, dispatch);
+
+export default connect(mapStateToProps, bindActionCreatorsToProps)(MoviePage);

@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Header />
-        <Toggle />
+        {/* <Toggle /> */}
         <Switch>
           <Route path="/movies/:id" component={MoviePage} />
           <Route path="/movies" component={MoviesPage} />
