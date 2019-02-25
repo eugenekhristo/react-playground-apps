@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // action creators
-import { toggleMessage, loadMovies } from './state/actions';
+import { toggleMessage } from '../toggle/actions';
+import { loadMovies } from '../movies/actions';
 
 const Toggle = ({ isMessageVisible, toggleMessage, loadMovies }) => {
   return (
@@ -22,7 +23,7 @@ const Toggle = ({ isMessageVisible, toggleMessage, loadMovies }) => {
 };
 
 const mapStateToProps = state => ({
-  isMessageVisible: state.message.isMessageVisible
+  isMessageVisible: state.toggle.isMessageVisible
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,13 +1,6 @@
 import axios from 'axios';
 
-export const TOGGLE_MESSAGE = 'TOGGLE_MESSAGE';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
-
-export function toggleMessage() {
-  return {
-    type: TOGGLE_MESSAGE
-  };
-}
 
 export function loadMovies() {
   return async dispatch => {

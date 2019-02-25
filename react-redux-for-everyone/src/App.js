@@ -4,9 +4,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.scss';
 // components
 import Header from './header';
-import MoviesPage from './movies-page';
-import MoviePage from './movie-page';
-import Toggle from './Toggle';
+import MoviesPage from './movies/movies-page';
+import MoviePage from './movies/movie-page';
+import Toggle from './toggle/Toggle';
 
 class App extends Component {
   render() {
