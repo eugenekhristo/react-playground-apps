@@ -1,39 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 // components
 import Movie from './movie';
+// actions
+import { loadMovies } from './actions';
 
 class MoviesPage extends Component {
-  state = {
-    movies: []
-  };
-
   render() {
-    const {movies} = this.state;
+    const { movies } = this.props;
 
     return (
       <div className="movies container">
-        {movies.map(movie => <Movie key={movie.id} movie={movie} {...this.props} />)}
+        {movies.map(movie => (
+          <Movie key={movie.id} movie={movie} {...this.props} />
+        ))}
       </div>
-    )
+    );
   }
 
-  async componentDidMount() {
-    try {
-      const moviesBlob = await axios.get(
-        'https://api.themoviedb.org/3/discover/movie?api_key=d5b443a2673ed0b0942a61242f8cec8d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1'
-      );
-      const {results: movies} = moviesBlob.data;
-      this.setState({movies});
-
-    } catch (error) {
-      if (error.response) {
-        console.log('Handling EXPECTED errors!');
-      } else {
-        console.log('Handling UN_EXPECTED errors!');
-      }
-    }
+  componentDidMount() {
+    const { loadMovies } = this.props;
+    loadMovies();
   }
 }
 
-export default MoviesPage;
+const mapStateToProps = state => ({
+  movies: state.movies.movies
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      loadMovies
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MoviesPage);
