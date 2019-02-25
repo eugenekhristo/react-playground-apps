@@ -10,10 +10,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './rootReducer';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-const middleware = [logger, thunk];
+const middleware = [thunk];
 
 const store = createStore(
   rootReducer,

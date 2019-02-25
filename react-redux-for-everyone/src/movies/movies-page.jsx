@@ -8,7 +8,11 @@ import { loadMovies } from './actions';
 
 class MoviesPage extends Component {
   render() {
-    const { movies } = this.props;
+    const { movies, isMoviesLoaded } = this.props;
+
+    if (!isMoviesLoaded) {
+      return <h2 style={{color: 'hotpink'}}>Loading...</h2>
+    }
 
     return (
       <div className="movies container">
@@ -20,13 +24,16 @@ class MoviesPage extends Component {
   }
 
   componentDidMount() {
-    const { loadMovies } = this.props;
-    loadMovies();
+    const { loadMovies, isMoviesLoaded } = this.props;
+    if (!isMoviesLoaded) {
+      loadMovies();
+    }
   }
 }
 
 const mapStateToProps = state => ({
-  movies: state.movies.movies
+  movies: state.movies.movies,
+  isMoviesLoaded: state.movies.isMoviesLoaded,
 });
 
 const mapDispatchToProps = dispatch =>
