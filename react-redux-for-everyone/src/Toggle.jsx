@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // action creators
-import { toggleMessage } from './state/actions';
+import { toggleMessage, loadMovies } from './state/actions';
 
-const Toggle = ({ isMessageVisible, toggleMessage }) => {
+const Toggle = ({ isMessageVisible, toggleMessage, loadMovies }) => {
   return (
     <React.Fragment>
+      <button onClick={loadMovies}>Load movies</button>
       <button onClick={toggleMessage}>Toggle</button>
       {isMessageVisible && (
         <span style={{ color: '#fff' }}>
@@ -27,7 +28,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      toggleMessage
+      toggleMessage,
+      loadMovies
     },
     dispatch
   );

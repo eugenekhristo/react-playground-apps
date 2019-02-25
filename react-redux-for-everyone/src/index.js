@@ -6,12 +6,20 @@ import * as serviceWorker from './serviceWorker';
 // react-router-dom
 import { BrowserRouter } from 'react-router-dom';
 // redux
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './state/rootReducer';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer, {}, composeWithDevTools());
+const middleware = [logger, thunk];
+
+const store = createStore(
+  rootReducer,
+  {},
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
 ReactDOM.render(
   <Provider store={store}>
