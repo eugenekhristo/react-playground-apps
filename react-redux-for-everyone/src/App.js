@@ -22,6 +22,10 @@ class App extends Component {
       </React.Fragment>
     );
   }
+
+  componentDidMount = () => {
+    localStorage.clear();
+  }
 }
 
 export default App;

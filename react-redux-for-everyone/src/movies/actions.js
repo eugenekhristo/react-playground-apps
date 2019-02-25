@@ -20,19 +20,29 @@ export function loadMovies() {
 
 export function loadMovie(id) {
   return async dispatch => {
+    const movieFromLocalStorage = JSON.parse(localStorage.getItem(id));
+    if (movieFromLocalStorage) {
+      return dispatch({
+        type: LOAD_MOVIE,
+        payload: movieFromLocalStorage
+      });
+    }
+
     const { data: movie } = await axios.get(
       `https://api.themoviedb.org/3/movie/${id}?api_key=d5b443a2673ed0b0942a61242f8cec8d&language=en-US`
     );
 
+    localStorage.setItem(id, JSON.stringify(movie));
+
     return dispatch({
       type: LOAD_MOVIE,
       payload: movie
-    })
-  }
+    });
+  };
 }
 
 export function resetMovie() {
   return {
     type: RESET_MOVIE
-  }
+  };
 }
