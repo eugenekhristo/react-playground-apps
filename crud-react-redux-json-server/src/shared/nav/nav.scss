@@ -1,0 +1,34 @@
+.nav {
+  padding: 0 5%;
+  background-color: var(--color-coral-pale);
+  box-shadow: var(--box-shadow-card);
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  line-height: 2.2rem;
+
+  &__logo {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: italic;
+    text-shadow: var(--text-shadow);
+    margin-right: 5rem;
+    padding: 1rem 0 2rem;
+    display: inline-block;
+  }
+
+  &__link {
+    font-size: 1.4rem;
+    color: #fff;
+    text-shadow: var(--text-shadow);
+    padding: 1rem 2rem 2rem;
+    display: inline-block;
+    transition: all .2s;
+
+    &:hover,
+    &.active {
+      background-color: var(--color-coral-bright);
+    }
+  }
+}
