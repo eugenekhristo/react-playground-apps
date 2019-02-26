@@ -1,0 +1,37 @@
+:root {
+  --color-grey-dark-2: #444;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  // line-height: 2.2rem;
+  color: var(--color-grey-dark-2);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+// #ddd6f3 → #faaca8
+
+// #9796f0 → #fbc7d4
+
+// #a8ff78 → #78ffd6
