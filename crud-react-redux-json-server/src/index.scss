@@ -1,5 +1,14 @@
 :root {
   --color-grey-dark-2: #444;
+  --color-violet-pale: #ddd6f3;
+  --color-violet-bright: #9796f0;
+  --color-coral-pale: #fbc7d4;
+  --color-coral-bright: #faaca8;
+
+  --box-shadow-card: 0 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  --text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14),
+  0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 *,
@@ -18,20 +27,29 @@ html {
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  font-size: 1.6rem;
   // line-height: 2.2rem;
   color: var(--color-grey-dark-2);
-  min-height: 100vh;
+  // min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: linear-gradient(
+    115deg,
+    var(--color-violet-pale),
+    var(--color-coral-pale)
+  );
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
 
 .container {
   max-width: 120rem;
   margin: 0 auto;
 }
-
-// #ddd6f3 → #faaca8
-
-// #9796f0 → #fbc7d4
-
-// #a8ff78 → #78ffd6
