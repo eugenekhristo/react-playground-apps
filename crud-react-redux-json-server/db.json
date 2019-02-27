@@ -1,18 +1,14 @@
 {
-  "users": [
+  "quotes": [
     {
-      "email": "qwe@qwe",
-      "password": "qwe123",
-      "name": "Eugene",
-      "surname": "Great",
-      "id": 1
+      "id": 1,
+      "text": "Simplicity is the ultimate sophistication.",
+      "author": "Leonardo da Vinci"
     },
     {
-      "email": "test@test",
-      "password": "qwe123",
-      "name": "John",
-      "surname": "Doe",
-      "id": 2
+      "id": 2,
+      "text": "All limitations are self-imposed.",
+      "author": "Oliver Wendell Holmes"
     }
   ]
 }

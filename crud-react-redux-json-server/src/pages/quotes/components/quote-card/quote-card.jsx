@@ -1,7 +1,8 @@
 import './quote-card.scss';
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const QuoteCard = () => {
+const QuoteCard = ({quote}) => {
   return (
     <React.Fragment>
       <div className="quote-card">
@@ -15,13 +16,21 @@ const QuoteCard = () => {
         </div>
 
         <p className="quote-card__text">
-          Simplicity is the ultimate sophistication.
+          {quote.text}
         </p>
 
-        <span className="quote-card__author">&mdash; Leonardo da Vinci</span>
+        <span className="quote-card__author">&mdash; {quote.author}</span>
       </div>
     </React.Fragment>
   );
 };
+
+QuoteCard.propTypes = {
+  quote: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired
+  })
+}
 
 export default QuoteCard;
