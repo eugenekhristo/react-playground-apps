@@ -31,3 +31,17 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// DEFAULT QUOTES FOR DB
+// "quotes": [
+//   {
+//     "id": 1,
+//     "text": "Simplicity is the ultimate sophistication.",
+//     "author": "Leonardo da Vinci"
+//   },
+//   {
+//     "id": 2,
+//     "text": "All limitations are self-imposed.",
+//     "author": "Oliver Wendell Holmes"
+//   }
+// ]

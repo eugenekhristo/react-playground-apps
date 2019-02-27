@@ -5,21 +5,23 @@ import { bindActionCreators } from 'redux';
 // components
 import QuoteCard from '../../components/quote-card/quote-card';
 // action generators
-import {getQuotes} from '../../../../state/quotes/actions';
+import { getQuotes, deleteQuote } from '../../../../state/quotes/actions';
 
 class QuotesPage extends Component {
   render() {
-    const {quotes} = this.props;
+    const { quotes, deleteQuote } = this.props;
 
     return (
       <React.Fragment>
-        {quotes.map(quote => <QuoteCard key={quote.id} quote={quote} />)}
+        {quotes.map(quote => (
+          <QuoteCard key={quote.id} quote={quote} onDeleteQuote={deleteQuote} />
+        ))}
       </React.Fragment>
     );
   }
 
   componentDidMount() {
-    const {getQuotes} = this.props;
+    const { getQuotes } = this.props;
 
     getQuotes();
   }
@@ -27,10 +29,18 @@ class QuotesPage extends Component {
 
 const mapStateToProps = state => ({
   quotes: state.quotes.quotes
-})
+});
 
-const bindActionsToProps = dispath => bindActionCreators({
-  getQuotes
-}, dispath)
+const bindActionsToProps = dispath =>
+  bindActionCreators(
+    {
+      getQuotes,
+      deleteQuote
+    },
+    dispath
+  );
 
-export default connect(mapStateToProps, bindActionsToProps)(QuotesPage);
+export default connect(
+  mapStateToProps,
+  bindActionsToProps
+)(QuotesPage);
