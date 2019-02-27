@@ -1,4 +1,4 @@
-import './quote-page.scss';
+import './quotes-page.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,15 +7,21 @@ import QuoteCard from '../../components/quote-card/quote-card';
 // action generators
 import {getQuotes} from '../../../../state/quotes/actions';
 
-class QuotePage extends Component {
+class QuotesPage extends Component {
   render() {
     const {quotes} = this.props;
 
     return (
       <React.Fragment>
-        {quotes.map(quote => <QuoteCard quote={quote} />)}
+        {quotes.map(quote => <QuoteCard key={quote.id} quote={quote} />)}
       </React.Fragment>
     );
+  }
+
+  componentDidMount() {
+    const {getQuotes} = this.props;
+
+    getQuotes();
   }
 }
 
@@ -27,4 +33,4 @@ const bindActionsToProps = dispath => bindActionCreators({
   getQuotes
 }, dispath)
 
-export default connect(mapStateToProps, bindActionsToProps)(QuotePage);
+export default connect(mapStateToProps, bindActionsToProps)(QuotesPage);

@@ -14,7 +14,7 @@ const initialState = {
 export default function(state = initialState, { type, payload }) {
   switch (type) {
     case GET_QUOTES:
-      return [...state.quotes];
+      return {...state, quotes: payload};
   
     default:
       return state;
