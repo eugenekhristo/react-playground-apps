@@ -1,9 +1,9 @@
-import { GET_QUOTES, DELETE_QUOTE } from './actions';
+import { GET_QUOTES, DELETE_QUOTE, ADD_QUOTE } from './actions';
 
 export class Quote {
-  constructor(text, author = 'Unknown') {
+  constructor(text, author) {
     this.text = text;
-    this.author = author;
+    this.author = author || 'Unknown';
   }
 }
 
@@ -20,6 +20,12 @@ export default function(state = initialState, { type, payload }) {
       return {
         ...state,
         quotes: state.quotes.filter(quote => quote.id !== payload)
+      };
+
+      case ADD_QUOTE:
+      return {
+        ...state,
+        quotes: [...state.quotes, payload]
       };
 
     default:

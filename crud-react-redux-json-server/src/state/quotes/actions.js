@@ -3,6 +3,7 @@ import axios from 'axios';
 export const BASE_URL = 'http://localhost:3001';
 export const GET_QUOTES = 'GET_QUOTES';
 export const DELETE_QUOTE = 'DELETE_QUOTE';
+export const ADD_QUOTE = 'ADD_QUOTE';
 
 export function getQuotes() {
   return async dispatch => {
@@ -14,13 +15,22 @@ export function getQuotes() {
   };
 }
 
-
 export function deleteQuote(id) {
   return async dispatch => {
     await axios.delete(`${BASE_URL}/quotes/${id}`);
     return dispatch({
       type: DELETE_QUOTE,
       payload: id
+    });
+  };
+}
+
+export function addQuote(quote) {
+  return async dispatch => {
+    const { data: addedQuote } = await axios.post(`${BASE_URL}/quotes`, quote);
+    return dispatch({
+      type: ADD_QUOTE,
+      payload: addedQuote
     });
   };
 }

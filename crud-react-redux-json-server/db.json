@@ -1,3 +1,19 @@
 {
-  "quotes": []
+  "quotes": [
+    {
+      "id": 1,
+      "text": "Simplicity is the ultimate sophistication.",
+      "author": "Leonardo da Vinci"
+    },
+    {
+      "id": 2,
+      "text": "All limitations are self-imposed.",
+      "author": "Oliver Wendell Holmes"
+    },
+    {
+      "text": "Everything you can imagine is real.",
+      "author": "Pablo Picasso",
+      "id": 3
+    }
+  ]
 }
