@@ -4,6 +4,7 @@ export const BASE_URL = 'http://localhost:3001';
 export const GET_QUOTES = 'GET_QUOTES';
 export const DELETE_QUOTE = 'DELETE_QUOTE';
 export const ADD_QUOTE = 'ADD_QUOTE';
+export const UPDATE_QUOTE = 'UPDATE_QUOTE';
 
 export function getQuotes() {
   return async dispatch => {
@@ -33,4 +34,14 @@ export function addQuote(quote) {
       payload: addedQuote
     });
   };
+}
+
+export function updateQuote(quote) {
+  return async dispatch => {
+    await axios.put(`${BASE_URL}/quotes/${quote.id}`, quote);
+    return dispatch({
+      type: UPDATE_QUOTE,
+      payload: quote
+    });
+  }
 }
