@@ -6,16 +6,15 @@ class Toggle extends Component {
   };
 
   handleToggle = () => {
-    this.setState({on: !this.state.on})
-  }
+    this.setState({ on: !this.state.on });
+  };
 
   render() {
-    return (
-      <div>
-        <button onClick={this.handleToggle}>Show/hide</button>
-        {this.state.on && this.props.children}
-      </div>
-    );
+    const { render } = this.props;
+    const { on } = this.state;
+    const handleToggle = this.handleToggle;
+
+    return <React.Fragment>{render({ on, handleToggle })}</React.Fragment>;
   }
 }
 

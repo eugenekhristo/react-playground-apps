@@ -6,9 +6,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Toggle>
-          <h1>Hello 🐱‍👤</h1>
-        </Toggle>
+        <Toggle render={({on, handleToggle}) => {
+          return (
+            <div>
+              <button onClick={handleToggle}>Show / hide</button>
+              {on &&  <h1>Hello World 😍</h1>}
+            </div>
+          );
+        }} />
       </div>
     );
   }
