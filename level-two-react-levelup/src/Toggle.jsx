@@ -10,11 +10,11 @@ class Toggle extends Component {
   };
 
   render() {
-    const { render } = this.props;
+    const { children } = this.props;
     const { on } = this.state;
     const handleToggle = this.handleToggle;
 
-    return <React.Fragment>{render({ on, handleToggle })}</React.Fragment>;
+    return children({ on, handleToggle });
   }
 }
 
