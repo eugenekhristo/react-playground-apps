@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
 import Toggle from './Toggle';
-import Portal from './Portal';
+import Modal from './Modal';
 
 class App extends Component {
   render() {
@@ -10,10 +10,11 @@ class App extends Component {
         <Toggle>
           {({ on, handleToggle }) => (
             <Fragment>
-              <button onClick={handleToggle}>Show / hide</button>
-              {on && <h1>Hello World 😍</h1>}
-
-              <Portal>{on && <h2>Hi i'm from Portal!!! 🐷</h2>}</Portal>
+              <button onClick={handleToggle}>Login</button>
+              <Modal on={on} onToggle={handleToggle}>
+                <h2>Children of Modal</h2>
+                <p>Just some text</p>
+              </Modal>
             </Fragment>
           )}
         </Toggle>
