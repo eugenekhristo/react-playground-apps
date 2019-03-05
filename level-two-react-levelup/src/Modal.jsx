@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Portal from './Portal';
 import styled from 'styled-components';
+import Icon from './Utils/Icon';
 
 class Modal extends Component {
   render() {
@@ -11,7 +12,9 @@ class Modal extends Component {
         {on && (
           <Overlay onClick={onToggle}>
             <ModalCard>
-              <CloseBtn onClick={onToggle}>Close</CloseBtn>
+              <CloseBtn onClick={onToggle}>
+                <Icon name="close" color="orangered" />
+              </CloseBtn>
               {children}
             </ModalCard>
           </Overlay>
@@ -47,6 +50,11 @@ const CloseBtn = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
 `;
 
 export default Modal;
