@@ -11,6 +11,8 @@ class QuotesPage extends Component {
   render() {
     const { quotes, deleteQuote } = this.props;
 
+    quotes.sort((a, b) => a.id > b.id ? -1 : 1);
+
     return (
       <React.Fragment>
         {quotes.map(quote => (
