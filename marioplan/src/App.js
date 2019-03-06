@@ -4,6 +4,8 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 // components
 import Dashboard from './components/dashboard/Dashboard';
 import ProjectDetails from './components/projects/ProjectDetails';
+import SignUp from './components/auth/SignUp';
+import SignIn from './components/auth/SignIn';
 
 
 class App extends Component {
@@ -12,7 +14,9 @@ class App extends Component {
       <React.Fragment>
         <Navbar />
         <Switch>
-          <Route path="/projects/:id" component={ProjectDetails} exact />
+          <Route path="/projects/:id" component={ProjectDetails} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/signin" component={SignIn} />
           <Route path="/" component={Dashboard} exact />
         </Switch>
       </React.Fragment>
