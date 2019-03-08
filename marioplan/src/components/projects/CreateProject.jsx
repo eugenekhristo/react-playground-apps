@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+// redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addProject } from '../../state/projects/actions';
 
 class CreateProject extends Component {
   state = {
@@ -6,17 +10,18 @@ class CreateProject extends Component {
     content: ''
   };
 
-  handleChange = ({target}) => {
+  handleChange = ({ target }) => {
     this.setState({
       [target.id]: target.value
     });
   };
-  
+
   handleSubmit = e => {
+    const {addProject} = this.props;
     e.preventDefault();
-    console.log(this.state);
+    addProject(this.state);
   };
-  
+
   render() {
     return (
       <div className="container">
@@ -43,4 +48,12 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      addProject
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(CreateProject);
