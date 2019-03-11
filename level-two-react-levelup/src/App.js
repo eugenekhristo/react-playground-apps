@@ -2,37 +2,36 @@ import React, { Component, Fragment } from 'react';
 import { Transition } from 'react-spring/renderprops';
 import './App.css';
 import { Toggle } from 'Utils';
-// import { Modal } from 'Elements';
+import { Card } from 'Elements';
 
-const Heading = props => {
+const JustCard = ({styles, name}) => {
   return (
-    <Fragment>
-      <h2 style={props}>Hello</h2>
-      <h3 style={props}>{Math.round(props.value)}</h3>
-    </Fragment>
+    <Card style={styles}>
+      <h2>{name}</h2>
+    </Card>
   );
 };
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Toggle>
           {({ on, handleToggle }) => (
             <Fragment>
               <button onClick={handleToggle}>Show / hide</button>
               <Transition
                 items={on}
-                from={{ opacity: 0, value: 0 }}
-                leave={{ opacity: 0, value: 0 }}
-                enter={{ opacity: 1, value: 100 }}
+                from={{ opacity: 0, height: '0px', backgroundColor: 'red' }}
+                enter={{ opacity: 1, height: '100px', backgroundColor: 'cyan' }}
+                leave={{ opacity: 0, height: '0px', backgroundColor: 'red' }}
               >
-                {on => on && Heading}
+                {on => on && (styles => <JustCard styles={styles} name={'Eugene'} />)}
               </Transition>
             </Fragment>
           )}
         </Toggle>
-      </div>
+      </Fragment>
     );
   }
 }
