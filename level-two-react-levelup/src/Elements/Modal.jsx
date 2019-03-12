@@ -5,7 +5,7 @@ import Icon from './Icon';
 import { Card } from './Cards';
 import { colors } from 'Utils';
 // spring
-import { Transition, animated } from 'react-spring/renderprops';
+import { Transition, animated, config } from 'react-spring/renderprops';
 
 class Modal extends Component {
   render() {
@@ -15,11 +15,16 @@ class Modal extends Component {
       <Portal>
         {on && (
           <Transition
+            // if there's some perfomance issues - use this native with styled
             native
+            config={{
+              tension: 400,
+              friction: 10
+            }}
             items={on}
-            from={{ opacity: 0, bgPpacity: 0, y: -25 }}
+            from={{ opacity: 1, bgPpacity: 0.5, y: -35 }}
             enter={{ opacity: 1, bgPpacity: 0.5, y: 0 }}
-            leave={{ opacity: 0, bgPpacity: 0, y: -25 }}
+            leave={{ opacity: 0, bgPpacity: 0, y: -35 }}
           >
             {on =>
               on &&
