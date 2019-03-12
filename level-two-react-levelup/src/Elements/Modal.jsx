@@ -5,7 +5,7 @@ import Icon from './Icon';
 import { Card } from './Cards';
 import { colors } from 'Utils';
 // spring
-import { Transition } from 'react-spring/renderprops';
+import { Transition, animated } from 'react-spring/renderprops';
 
 class Modal extends Component {
   render() {
@@ -15,22 +15,29 @@ class Modal extends Component {
       <Portal>
         {on && (
           <Transition
+            native
             items={on}
-            from={{opacity: 0, bgPpacity: 0, y: -25 }}
-            enter={{opacity: 1, bgPpacity: 0.5, y: 0 }}
-            leave={{opacity: 0, bgPpacity: 0, y: -25 }}
+            from={{ opacity: 0, bgPpacity: 0, y: -25 }}
+            enter={{ opacity: 1, bgPpacity: 0.5, y: 0 }}
+            leave={{ opacity: 0, bgPpacity: 0, y: -25 }}
           >
             {on =>
               on &&
               (styles => (
                 <Overlay onClick={onToggle}>
-                  <ModalCard style={{opacity: styles.opacity, transform: `translate3D(0,${styles.y}px,0)`}}>
+                  <ModalCard
+                    style={{
+                      opacity: styles.opacity,
+                      // in order to use native API we need to use interpolate function instead of just styles.y
+                      transform: styles.y.interpolate(y => `translate3D(0,${y}px,0)`)
+                    }}
+                  >
                     <CloseBtn onClick={onToggle}>
                       <Icon name="close" color={colors.black} />
                     </CloseBtn>
                     {children}
                   </ModalCard>
-                  <Background style={{opacity: styles.bgPpacity}} />
+                  <Background style={{ opacity: styles.bgPpacity }} />
                 </Overlay>
               ))
             }
@@ -52,7 +59,7 @@ const Overlay = styled.div`
   align-items: center;
 `;
 
-const Background = styled.div`
+const Background = styled(animated.div)`
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
@@ -61,7 +68,10 @@ const Background = styled.div`
   height: 100vh;
 `;
 
-const ModalCard = styled(Card)`
+// it says please apply all styles from Card to new HTML Element (in this case animated one)
+// when Transition spring native = then we need animated.div to work smootly
+const AnimCard = Card.withComponent(animated.div);
+const ModalCard = styled(AnimCard)`
   position: relative;
   min-width: 320px;
   /* transform: translateY(-15vh); */
