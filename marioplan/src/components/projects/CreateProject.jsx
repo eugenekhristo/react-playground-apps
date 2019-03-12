@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// actions
 import { addProject } from '../../state/projects/actions';
 
 class CreateProject extends Component {

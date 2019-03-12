@@ -1,4 +1,4 @@
-import { ADD_PROJECT } from './actions';
+import { ADD_PROJECT, ADD_PROJECT_ERROR } from './actions';
 
 const initialState = {
   projects: [
@@ -27,6 +27,10 @@ export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_PROJECT:
       console.log(`Adding new project`, payload);
+      return state;
+
+    case ADD_PROJECT_ERROR:
+      console.log(`Error occured as adding project: `, payload);
       return state;
 
     default:

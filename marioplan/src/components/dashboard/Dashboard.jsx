@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 //redux
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 // components
 import ProjectList from '../projects/ProjectList';
 import Notifications from './Notifications';
+// firebase
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Dashboard extends Component {
-  
   render() {
-    const {projects} = this.props;
+    const { projects } = this.props;
 
     return (
       <div className="dashboard container">
@@ -27,6 +29,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   projects: state.project.projects
-})
+});
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'projects' }])
+)(Dashboard);
