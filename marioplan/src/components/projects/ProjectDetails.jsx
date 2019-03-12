@@ -6,7 +6,7 @@ const ProjectDetails = ({ match }) => {
     <div className="container section project-details">
       <div className="card z-depth-0">
         <div className="card-content">
-          <span className="card-title">Project title - {id}</span>
+          <span className="card-title">{id}</span>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et labore
             quaerat quibusdam vel saepe, ab voluptate accusantium culpa nemo
