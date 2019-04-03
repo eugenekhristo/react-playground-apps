@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import { Quote } from './../../state/quotes/reducer';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { addQuote, getQuotes, updateQuote } from './../../state/quotes/actions';
+import { Quote } from '../../state/quotes/reducer';
+import { addQuote, getQuotes, updateQuote } from '../../state/quotes/actions';
 
 class EditForm extends Component {
   state = {
     quote: {
       text: '',
-      author: ''
+      author: '',
     },
-    isUpdatingPage: !!this.props.match.params.id
+    isUpdatingPage: !!this.props.match.params.id,
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { history, addQuote, updateQuote, match } = this.props;
+    const {
+      history, addQuote, updateQuote, match,
+    } = this.props;
     const { text, author } = this.state.quote;
 
     if (this.state.isUpdatingPage) {
@@ -27,7 +29,7 @@ class EditForm extends Component {
     }
 
     this.setState({ quote: {} });
-    history.replace(`/quotes`);
+    history.replace('/quotes');
   };
 
   handleOnChange = ({ target }) => {
@@ -43,19 +45,9 @@ class EditForm extends Component {
 
     return (
       <form action="#" onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="text"
-          value={text}
-          onChange={this.handleOnChange}
-        />
+        <input type="text" name="text" value={text} onChange={this.handleOnChange} />
         <br />
-        <input
-          type="text"
-          name="author"
-          value={author}
-          onChange={this.handleOnChange}
-        />
+        <input type="text" name="author" value={author} onChange={this.handleOnChange} />
         <br />
         <button type="submit">{isUpdatingPage ? 'Update' : 'Create'}</button>
       </form>
@@ -75,20 +67,19 @@ class EditForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  quotes: state.quotes.quotes
+  quotes: state.quotes.quotes,
 });
 
-const bindActionsToProps = dispatch =>
-  bindActionCreators(
-    {
-      addQuote,
-      getQuotes,
-      updateQuote
-    },
-    dispatch
-  );
+const bindActionsToProps = dispatch => bindActionCreators(
+  {
+    addQuote,
+    getQuotes,
+    updateQuote,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,
-  bindActionsToProps
+  bindActionsToProps,
 )(EditForm);
