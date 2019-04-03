@@ -9,12 +9,14 @@ export const Card = styled.div`
   overflow: hidden;
   margin: 20px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   align-items: center;
   ${elevation[3]}
   ${transition({time: '.25s', property: 'box-shadow'})}
 
   &:hover {
-    ${elevation[5]}
+    ${elevation[5]};
   }
 `;
